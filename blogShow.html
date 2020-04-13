@@ -64,60 +64,38 @@
 </head>
 <body>
     <header id="header"></header>
-    
     <div class="container">
-        <div class="row">
-            <div class="col-md-3 hidden-xs">
-                <div class="user">
-                    <img src="./ecfd25f3fa6403fa7c153e66f38da213.jpeg" class="img-thumbnail"> 
-                    <p> skakei</p>
-                    <p class="col-md-12">百度图片使用世界前沿的人工智能技术,为用户甄选海量的高清美图,用更流畅、更快捷、更精准的搜索体验,带你去发现多彩的世界。</p>
-                </div>
+      <div class="col-md-8 col-md-offset-2">
+        <form role="form">
+            <div class="form-group">
+              <label for="name">发布内容</label>
+              <input type="text" class="form-control" id="name" placeholder="请输入名称">
             </div>
-            
-            <div class="col-md-9" id="news">
-              
-               
+            <div class="form-group">
+              <label for="inputfile">文件输入</label>
+              <input type="file" id="inputfile">
+              <p class="help-block">这里是块级帮助文本的实例。</p>
             </div>
-        </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox">请打勾
+              </label>
+            </div>
+            <button type="submit" class="btn btn-default">提交</button>
+          </form>
+      </div>
     </div>
+
+               
+               
+       
 
 
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
     <script src="./js/bootstrap.js"></script>  
     <script src="./js/mk.js"></script>
     <script>
-      $.ajax({
-        url:'http://www.xuhan/blogs',
-        type:'get',
-        dataType:'json',
-        success:function(data){
-            $.each(data.result,function(index,item){
-           let  text =`
-           <div class="col-md-12 box">
-                <div class="col-md-4">
-                    <img src="./ecfd25f3fa6403fa7c153e66f38da213.jpeg" class="img-rounded" style="width: 100%;">
-                </div>
-                <div class="col-md-8">
-                    <div class="panel panel-default">
-                        <h2 class="panel-heading" style="background:none;border: none;">
-                            ${item.title}
-                        </h2>
-                        <div class="panel-body">
-                            ${item.body}
-                        </div>
-                        <div class="panel-footer"style="background: none;border:none">
-                            <a href="#">${item.name}</a>
-                            <a href="#">${item.city}</a>
-                            <a href="#">${item.ctime}</a>
-                        </div>
-                    </div>
-                </div>
-               </div>`
-           $('#news').append($(text))
-       })
-        }
-      })
+      
        
     </script>
 </body>
