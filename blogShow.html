@@ -64,38 +64,54 @@
 </head>
 <body>
     <header id="header"></header>
+    
     <div class="container">
-      <div class="col-md-8 col-md-offset-2">
-        <form role="form">
-            <div class="form-group">
-              <label for="name">发布内容</label>
-              <input type="text" class="form-control" id="name" placeholder="请输入名称">
+        <div class="row">
+            <div class="col-md-12" id="news">
+              
             </div>
-            <div class="form-group">
-              <label for="inputfile">文件输入</label>
-              <input type="file" id="inputfile">
-              <p class="help-block">这里是块级帮助文本的实例。</p>
-            </div>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox">请打勾
-              </label>
-            </div>
-            <button type="submit" class="btn btn-default">提交</button>
-          </form>
-      </div>
+        </div>
     </div>
-
-               
-               
-       
 
 
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
     <script src="./js/bootstrap.js"></script>  
     <script src="./js/mk.js"></script>
     <script>
-      
+       $.ajax({
+        url:'http://api.hzbiz.net/0103/api/blogs.php',
+        type:'get',
+        dataType:'json',
+        success:function(data){
+            console.log(data.blogs)
+            $.each(data.blogs,function(index,item){
+           if(item.id==getUrlName().blogID){
+            let  text =`
+           <div class="col-md-12 box">
+                <div class="col-md-4">
+                    <img src="./ecfd25f3fa6403fa7c153e66f38da213.jpeg" class="img-rounded" style="width: 100%;">
+                </div>
+                <div class="col-md-8">
+                    <div class="panel panel-default">
+                        <h2 class="panel-heading" style="background:none;border: none;">
+                           <a href='blogShow.html?blogID=${item.id}'> ${item.title}</a>
+                        </h2>
+                        <div class="panel-body">
+                            ${item.body}
+                        </div>
+                        <div class="panel-footer"style="background: none;border:none">
+                            <a href="#">${item.name}</a>
+                            <a href="#">${item.city}</a>
+                            <a href="#">${item.ctime}</a>
+                        </div>
+                    </div>
+                </div>
+               </div>`
+           $('#news').append($(text))
+           }
+       })
+        }
+      })
        
     </script>
 </body>

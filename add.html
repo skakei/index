@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <script type="text/javascript" src="./js/mock.js"></script>
+    <style>
+        body{
+            background: rgb(243, 246, 247);
+        }
+        @media (min-width: 768px){
+        .navbar {
+            border-radius: 0; 
+        }
+        }
+        @media (max-width: 768px){
+            .btn{
+            line-height: 37px;
+        }
+        }
+        form[role="search"]{
+            position: relative;
+            /* background-color: #fff; */
+        }
+        form[role="search"] .io{
+            position: absolute;
+            right: 10px;
+            background:rgba(0, 0, 0, 0);
+        }
+        .user{
+            width: 96%;
+            min-width: 200px;
+            background-color: #fff;
+            text-align: center;
+            padding-bottom: 5px;
+            overflow: hidden;
+        }
+        .user img{
+            width: 100px;
+            border-radius: 50%;
+            margin: 0 auto;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+        .main{
+            border-left: 1px solid #333;
+        }
+        
+        .panel-default{
+            border: none;
+        }
+        .box{
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+        .box:first-child{
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <header id="header"></header>
+    <div class="container">
+        <div class="row">
+           <div class="col-md-6 col-md-offset-3">
+            <h1 class="page-header">写文章</h1>
+            <form role="form" id="postNews">
+                <div class="form-group">
+                  <label for="name">名称</label>
+                  <input type="text" class="form-control" name="title" placeholder="请输入名称">
+                </div>
+                <div class="form-group">
+                    <label for="">内容</label>
+                    <textarea class="form-control" name="body" rows="3"></textarea>
+                  </div>
+                  <div class="form-group">
+                   <div class="row">
+                    <div class="col-md-4">   
+                        <label for="name">发布者</label>
+                        <input type="text" class="form-control" name="username" placeholder="作者">
+                    </div>
+                    <div class="col-md-4">   
+                        <label for="name">发布时间</label>
+                        <input type="datetime-local" class="form-control" name="ctime" placeholder="时间">
+                    </div>
+                    <div class="col-md-4">   
+                        <label for="name">发布者的城市</label>
+                        <input type="text" class="form-control" name="city" placeholder="城市">
+                    </div>
+                   </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="name">发布图片</label>
+                    <input type="file" class="btn btn-default" name="url" placeholder="发布图片">
+                  </div>
+                <button type="submit" class="btn btn-default" id="btn">提交</button>
+              </form>
+           </div>
+        </div>
+    </div>
+
+               
+               
+       
+
+
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script src="./js/bootstrap.js"></script>  
+    <script src="./js/mk.js"></script>
+    <script>
+      
+       $('#postNews').on('submit',function(e){
+           e.preventDefault();
+           $.post('http://api.hzbiz.net/0103/api/postNews.php',{
+               title:$('[name="title"]').val(),
+               body:$('[name="body"]').val(),
+               username:$('[name="username"]').val(),
+               ctime:$('[name="ctime"]').val(),
+               city:$('[name="city"]').val(),
+           },function(res){
+               console.log(res)
+           })
+       })
+    </script>
+</body>
+</html>

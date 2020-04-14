@@ -88,11 +88,12 @@
     <script src="./js/mk.js"></script>
     <script>
       $.ajax({
-        url:'http://www.xuhan/blogs',
+        url:'http://api.hzbiz.net/0103/api/blogs.php',
         type:'get',
         dataType:'json',
         success:function(data){
-            $.each(data.result,function(index,item){
+            console.log(data.blogs)
+            $.each(data.blogs,function(index,item){
            let  text =`
            <div class="col-md-12 box">
                 <div class="col-md-4">
@@ -101,7 +102,7 @@
                 <div class="col-md-8">
                     <div class="panel panel-default">
                         <h2 class="panel-heading" style="background:none;border: none;">
-                            ${item.title}
+                           <a href='blogShow.html?blogID=${item.id}'> ${item.title}</a>
                         </h2>
                         <div class="panel-body">
                             ${item.body}
